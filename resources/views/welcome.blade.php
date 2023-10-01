@@ -6,27 +6,27 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Cleanu - Cleaning Services Template">
+    <meta name="description" content="Cleaning Services">
 
     <!-- ========== Page Title ========== -->
-    <title>Cleanu - Cleaning Services Template</title>
+    <title>Cleaning Services</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('assets/img/favicon.png')}}" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="assets/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="assets/css/themify-icons.css" rel="stylesheet"/>
-    <link href="assets/css/elegant-icons.css" rel="stylesheet"/>
-    <link href="assets/css/flaticon-set.css" rel="stylesheet"/>
-    <link href="assets/css/magnific-popup.css" rel="stylesheet"/>
-    <link href="assets/css/owl.carousel.min.css" rel="stylesheet"/>
-    <link href="assets/css/owl.theme.default.min.css" rel="stylesheet"/>
-    <link href="assets/css/animate.css" rel="stylesheet"/>
-    <link href="assets/css/bootsnav.css" rel="stylesheet"/>
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/font-awesome.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/themify-icons.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/elegant-icons.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/flaticon-set.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/magnific-popup.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/owl.theme.default.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/animate.css')}}" rel="stylesheet"/>
+    <link href="{{asset('assets/css/bootsnav.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
-    <link href="assets/css/responsive.css" rel="stylesheet"/>
+    <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet"/>
     <!-- ========== End Stylesheet ========== -->
 
 </head>
@@ -55,21 +55,13 @@
                 </ul>
                 <div class="social">
                     <ul>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </li>
+                        @foreach($social_links as $link)
+                            <li>
+                                <a href="{{ $link->url }}" target="_blank">
+                                    <i class="{{$link->fa_icon}}"></i>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -84,13 +76,13 @@
 <div class="banner-area top-pad-extra text-regular right-shape content-less">
     <!-- Animated Bubble -->
     <div class="animated-bubble">
-        <img src="assets/img/shape/bubble.png" alt="Bubble">
-        <img src="assets/img/shape/bubble-mini.png" alt="Bubble">
-        <img src="assets/img/shape/bubble.png" alt="Bubble">
-        <img src="assets/img/shape/bubble.png" alt="Bubble">
-        <img src="assets/img/shape/bubble-mini.png" alt="Bubble">
-        <img src="assets/img/shape/bubble.png" alt="Bubble">
-        <img src="assets/img/shape/bubble-mid.png" alt="Bubble">
+        <img src="{{asset('assets/img/shape/bubble.png')}}" alt="Bubble">
+        <img src="{{asset('assets/img/shape/bubble-mini.png')}}" alt="Bubble">
+        <img src="{{asset('assets/img/shape/bubble.png')}}" alt="Bubble">
+        <img src="{{asset('assets/img/shape/bubble.png')}}" alt="Bubble">
+        <img src="{{asset('assets/img/shape/bubble-mini.png')}}" alt="Bubble">
+        <img src="{{asset('assets/img/shape/bubble.png')}}" alt="Bubble">
+        <img src="{{asset('assets/img/shape/bubble-mid.png')}}" alt="Bubble">
     </div>
     <!-- End Animated Bubble -->
     <div id="bootcarousel" class="carousel text-light slide animate_text" data-ride="carousel">
@@ -149,7 +141,7 @@
                 <div class="col-lg-6">
                     <div class="thumb">
                         <img src="{{asset($about->photo)}}" alt="Thumb">
-                        <img src="{{asset($about->circle_photo)}}" alt="Thumb">
+                        <img src="{{asset($about->circle_photo)}}" height="280px" alt="Thumb">
                         <div class="experience">
                             <h2>{{$about->year}}</h2>
                             <h4>{{$about->title_year}}</h4>
@@ -188,17 +180,17 @@
         <div class="row align-center">
             <div class="col-lg-6">
                 <div class="thumb">
-                    <img src="assets/img/illustration/6.png" alt="illustration">
+                    <img src="{{asset($application->photo)}}" alt="illustration">
                 </div>
             </div>
             <div class="col-lg-5 offset-lg-1 form-content">
                 <div class="form-items">
-                    <h2>Free Estimate</h2>
+                    <h2>{{$application->title}}</h2>
                     <p>
-                        Get a quick response within 24 hours
+                        {{$application->description}}
                     </p>
-                    <form action="https://validthemes.net/site-template/cleanu/assets/mail/contact.php" method="POST"
-                          class="contact-form">
+                    <form action="{{route('confirm_application')}}" method="POST"
+                          class="contact-form" id="form">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
@@ -219,14 +211,14 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="{{__('Адрес')}}"></textarea>
+                                    <textarea class="form-control" name="address" placeholder="{{__('Адрес')}}"></textarea>
                                     <span class="alert-error"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <button class="btn-animation dark border" type="submit" name="submit" id="submit">
+                                <button class="btn-animation dark border" form="form" type="submit">
                                     <span> {{__('Отправить заявку')}} <i class="fas fa-angle-right"></i></span>
                                 </button>
                             </div>
@@ -295,7 +287,7 @@
 <footer class="bg-theme text-light">
     <!-- illustration -->
     <div class="animate-illustration">
-        <img src="assets/img/illustration/2.png" alt="illustration">
+        <img src="{{asset('assets/img/illustration/2.png')}}" alt="illustration">
     </div>
     <!-- End illustration -->
     <div class="container">
@@ -312,26 +304,14 @@
 
                 <div class="col-lg-4 col-md-6 item">
                     <div class="f-item link">
-                        <h4 class="widget-title">Services</h4>
+                        <h4 class="widget-title">{{__('Услуги')}}</h4>
                         <ul>
-                            <li>
-                                <a href="services-details.html"><i class="fas fa-angle-right"></i> House Cleaning</a>
-                            </li>
-                            <li>
-                                <a href="services-details.html"><i class="fas fa-angle-right"></i> Carpet</a>
-                            </li>
-                            <li>
-                                <a href="services-details.html"><i class="fas fa-angle-right"></i> Garden</a>
-                            </li>
-                            <li>
-                                <a href="services-details.html"><i class="fas fa-angle-right"></i> Bedroom</a>
-                            </li>
-                            <li>
-                                <a href="services-details.html"><i class="fas fa-angle-right"></i> Residential</a>
-                            </li>
-                            <li>
-                                <a href="services-details.html"><i class="fas fa-angle-right"></i> Maid Services</a>
-                            </li>
+                           @foreach($services as $service)
+                                <li>
+                                    <a href="/"><i class="fas fa-angle-right"></i> {{$service->title}}</a>
+                                </li>
+                           @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -374,21 +354,21 @@
             <div class="footer-bottom-box">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>&copy; Copyright 2022. All Rights Reserved by <a href="#">validthemes</a></p>
+                        <p>&copy; Все права защищены.</p>
                     </div>
-                    <div class="col-lg-6 text-right link">
-                        <ul>
-                            <li>
-                                <a href="#">Terms</a>
-                            </li>
-                            <li>
-                                <a href="#">Privacy</a>
-                            </li>
-                            <li>
-                                <a href="#">Support</a>
-                            </li>
-                        </ul>
-                    </div>
+{{--                    <div class="col-lg-6 text-right link">--}}
+{{--                        <ul>--}}
+{{--                            <li>--}}
+{{--                                <a href="#">Terms</a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#">Privacy</a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#">Support</a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>
@@ -404,27 +384,26 @@
 
 <!-- jQuery Frameworks
 ============================================= -->
-<script src="assets/js/jquery-3.6.0.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/jquery.appear.js"></script>
-<script src="assets/js/jquery.easing.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/modernizr.custom.13711.js"></script>
-<script src="assets/js/owl.carousel.min.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/progress-bar.min.js"></script>
-<script src="assets/js/isotope.pkgd.min.js"></script>
-<script src="assets/js/imagesloaded.pkgd.min.js"></script>
-<script src="assets/js/count-to.js"></script>
-<script src="assets/js/jquery.nice-select.min.js"></script>
-<script src="assets/js/YTPlayer.min.js"></script>
-<script src="assets/js/jquery.event.move.js"></script>
-<script src="assets/js/jquery.twentytwenty.js"></script>
-<script src="assets/js/bootsnav.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('assets/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.appear.js')}}"></script>
+<script src="{{asset('assets/js/jquery.easing.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('assets/js/modernizr.custom.13711.js')}}"></script>
+<script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('assets/js/wow.min.js')}}"></script>
+<script src="{{asset('assets/js/progress-bar.min.js')}}"></script>
+<script src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/js/imagesloaded.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/js/count-to.js')}}"></script>
+<script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script>
+<script src="{{asset('assets/js/YTPlayer.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.event.move.js')}}"></script>
+<script src="{{asset('assets/js/jquery.twentytwenty.js')}}"></script>
+<script src="{{asset('assets/js/bootsnav.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
 
 </body>
 
-<!-- Mirrored from validthemes.net/site-template/cleanu/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Sep 2023 19:32:42 GMT -->
 </html>

@@ -20,4 +20,8 @@ Route::group([
     Route::crud('content-about', 'ContentAboutCrudController');
     Route::crud('content-success-projects', 'ContentSuccessProjectsCrudController');
     Route::crud('content-project-photos', 'ContentProjectPhotosCrudController');
+    Route::crud('content-application', 'ContentApplicationCrudController');
+    Route::crud('content-service', 'ContentServiceCrudController');
+    Route::crud('social-link', 'SocialLinkCrudController');
+    Route::crud('application', 'ApplicationCrudController');
 }); // this should be the absolute last line of this file
