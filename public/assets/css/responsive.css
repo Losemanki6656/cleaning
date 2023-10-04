@@ -1,5 +1,5 @@
-/*================================ 
-    #RESPONSIVE CSS 
+/*================================
+    #RESPONSIVE CSS
 ====================================*/
 
 
@@ -164,13 +164,13 @@
 	.work-process-area .process-items .item h5 {
 		margin-top: 10px;
 	}
-	.work-process-area .process-items .single-item:nth-child(2n) .item img, 
+	.work-process-area .process-items .single-item:nth-child(2n) .item img,
 	.work-process-area .process-items .single-item .item:hover img {
 		transform: inherit;
 		margin-bottom: 25px;
 	}
 
-	.work-process-area .process-items .item:hover span, 
+	.work-process-area .process-items .item:hover span,
 	.work-process-area .process-items .single-item:nth-child(2n) .item span {
 		right: inherit;
 	}
@@ -219,18 +219,18 @@
 		right: auto;
 		margin-bottom: 30px;
 	}
-	
+
 	.pricing-style-two .pricing-header,
 	.pricing-style-two .pricing-item .price {
 		text-align: center;
 	}
-	
+
 	.pricing-style-two .pricing-item li {
 		float: none;
 		display: block;
 		width: auto;
 	}
-	
+
 	.pricing-style-two .pricing-item {
 		text-align: center;
 	}
@@ -359,11 +359,11 @@
 	.services-style-three .item {
     	border: 1px solid #e7e7e7;
     }
-    
+
     .services-style-three {
     	margin-top: 30px;
     }
-    
+
     .services-style-three:first-child,
     .services-style-three:nth-child(2) {
     	margin-top: 0;
@@ -598,9 +598,9 @@
 		position: relative;
 	}
 	/* Topbar */
-	.top-bar-area {
-		display: none;
-	}
+	/*.top-bar-area {*/
+	/*	display: none;*/
+	/*}*/
 	.navbar .attr-nav .call {
 		display: none;
 	}
@@ -746,7 +746,7 @@
 	.about-style-three ul li {
 		width: 100%;
 	}
-	
+
 	/* Estimate */
 	.estimate-area .estimate-form .shape {
 		display: none;
@@ -907,13 +907,13 @@
 	.work-process-area .process-items .item h5 {
 		margin-top: 10px;
 	}
-	.work-process-area .process-items .single-item:nth-child(2n) .item img, 
+	.work-process-area .process-items .single-item:nth-child(2n) .item img,
 	.work-process-area .process-items .single-item .item:hover img {
 		transform: inherit;
 		margin-bottom: 25px;
 	}
 
-	.work-process-area .process-items .item:hover span, 
+	.work-process-area .process-items .item:hover span,
 	.work-process-area .process-items .single-item:nth-child(2n) .item span {
 		right: inherit;
 	}
@@ -1185,18 +1185,18 @@
 		right: auto;
 		margin-bottom: 30px;
 	}
-	
+
 	.pricing-style-two .pricing-header,
 	.pricing-style-two .pricing-item .price {
 		text-align: center;
 	}
-	
+
 	.pricing-style-two .pricing-item li {
 		float: none;
 		display: block;
 		width: auto;
 	}
-	
+
 	.pricing-style-two .pricing-item {
 		text-align: center;
 	}

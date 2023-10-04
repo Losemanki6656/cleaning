@@ -33,12 +33,9 @@
 
 <body>
 
-<!-- Preloader Start -->
 <div class="se-pre-con"></div>
-<!-- Preloader Ends -->
 
-<!-- Start Header Top
-============================================= -->
+
 <div class="top-bar-area multi-content bg-dark text-light">
     <div class="container">
         <div class="row align-center">
