@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ApplicationRequest;
+use App\Models\Application;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 use http\Env\Request;
@@ -90,5 +91,24 @@ class ApplicationCrudController extends CrudController
     public function confirm_application(\Illuminate\Http\Request $request)
     {
         return redirect()->back();
+    }
+
+    public function sendMessage(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ]);
+
+        Application::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address
+        ]);
+
+        return response()->json([
+            'message' => 'Ваша заявка принята!'
+        ]);
     }
 }

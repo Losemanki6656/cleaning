@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Cleaning Services">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- ========== Page Title ========== -->
     <title>Cleaning Services</title>
@@ -47,7 +48,7 @@
             <div class="col-lg-9 info item-flex space-between">
                 <ul>
                     <li>
-                        <i class="fas fa-clock"></i> {{__('Часы работы')}}: {{$about->from_time}} – {{$about->to_time}}
+                        <i class="fas fa-phone"></i> {{__('Часы работы')}}: {{$about->from_time}} – {{$about->to_time}}
                     </li>
                 </ul>
                 <div class="social">
@@ -188,19 +189,22 @@
                     </p>
                     <form action="{{route('confirm_application')}}" method="POST"
                           class="contact-form" id="form">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="form-group">
-                                    <input class="form-control" id="name" name="name" placeholder="{{__('Имя')}}" type="text">
-                                    <span class="alert-error"></span>
+                                <div class="form-group text-center">
+                                    <input class="form-control" id="name" name="name" placeholder="{{__('Имя')}}"
+                                           type="text" required>
+                                        <span id="error_name" class="font-weight-bold alert-error text-danger text-center"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="form-group">
-                                    <input class="form-control" id="phone" name="phone" placeholder="{{__('Телефон номер')}}" type="text">
-                                    <span class="alert-error"></span>
+                                <div class="form-group text-center">
+                                    <input class="form-control" id="phone" name="phone"
+                                           placeholder="{{__('Телефон номер')}}" type="text" required>
+                                    <span id="error_phone" class="font-weight-bold alert-error text-danger text-center"></span>
                                 </div>
                             </div>
                         </div>
@@ -208,21 +212,48 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <textarea class="form-control" name="address" placeholder="{{__('Адрес')}}"></textarea>
+                                    <input class="form-control" id="date" name="date"
+                                           placeholder="{{__('')}}" type="date">
                                     <span class="alert-error"></span>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-lg-12">
-                                <button class="btn-animation dark border" form="form" type="submit">
+                                <div class="form-group text-center">
+                                    <textarea class="form-control" name="address"
+                                              placeholder="{{__('Адрес')}}" required></textarea>
+                                    <span id="error_address" class="font-weight-bold alert-error text-danger text-center"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="file" name="file_upload" style="display: none" id="file_upload"
+                                           multiple>
+                                    <button class="btn btn-theme primary effect" type="button"
+                                            onclick="thisFileUpload();">
+                                        <span><i class="fas fa-download"></i> {{__('Прикрепите файл')}} </span>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button class="btn-animation dark border" form="form" type="button"
+                                        onclick="sendMessage();">
                                     <span> {{__('Отправить заявку')}} <i class="fas fa-angle-right"></i></span>
                                 </button>
                             </div>
                         </div>
                         <!-- Alert Message -->
-                        <div class="col-lg-12 alert-notification">
-                            <div id="message" class="alert-msg"></div>
+                        <div class="col-lg-12 alert-notification mt-3">
+                            <div id="message" class="font-weight-bold alert-msg text-success text-center"></div>
                         </div>
                     </form>
                 </div>
@@ -303,11 +334,11 @@
                     <div class="f-item link">
                         <h4 class="widget-title">{{__('Услуги')}}</h4>
                         <ul>
-                           @foreach($services as $service)
+                            @foreach($services as $service)
                                 <li>
                                     <a href="/"><i class="fas fa-angle-right"></i> {{$service->title}}</a>
                                 </li>
-                           @endforeach
+                            @endforeach
 
                         </ul>
                     </div>
@@ -353,19 +384,19 @@
                     <div class="col-lg-6">
                         <p>&copy; Все права защищены.</p>
                     </div>
-{{--                    <div class="col-lg-6 text-right link">--}}
-{{--                        <ul>--}}
-{{--                            <li>--}}
-{{--                                <a href="#">Terms</a>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a href="#">Privacy</a>--}}
-{{--                            </li>--}}
-{{--                            <li>--}}
-{{--                                <a href="#">Support</a>--}}
-{{--                            </li>--}}
-{{--                        </ul>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="col-lg-6 text-right link">--}}
+                    {{--                        <ul>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="#">Terms</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="#">Privacy</a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li>--}}
+                    {{--                                <a href="#">Support</a>--}}
+                    {{--                            </li>--}}
+                    {{--                        </ul>--}}
+                    {{--                    </div>--}}
                 </div>
             </div>
         </div>
@@ -400,6 +431,44 @@
 <script src="{{asset('assets/js/jquery.twentytwenty.js')}}"></script>
 <script src="{{asset('assets/js/bootsnav.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
+
+<script>
+    function thisFileUpload() {
+        document.getElementById("file_upload").click();
+    }
+
+    function sendMessage() {
+        let url = "{{route('send_message')}}";
+
+        $.ajax({
+            url: url,
+            type: "POST",
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+            },
+            data: {
+                name: $('#name').val(),
+                phone: $('#phone').val(),
+                address: $('#address').val(),
+                data: $('#data').val(),
+                dataType: "json",
+            },
+            success: function (data) {
+                $('#message').html(data.message);
+
+                setTimeout(function () {
+                    $('#message').html('');
+                }, 4000);
+            },
+            error: function (error) {
+                $('#error_name').html(error.responseJSON.errors.name[0] ?? '');
+                $('#error_phone').html(error.responseJSON.errors.phone[0] ?? '');
+                $('#error_address').html(error.responseJSON.errors.address[0] ?? '');
+            }
+        });
+
+    }
+</script>
 
 </body>
 
