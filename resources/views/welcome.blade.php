@@ -629,8 +629,8 @@
                                 </div>
                             </div>
                             <!-- Alert Message -->
-                            <div class="col-lg-12 alert-notification">
-                                <div id="message" class="alert-msg"></div>
+                            <div class="col-lg-12 alert-notification mt-3">
+                                <div id="comment_message" class="font-weight-bold alert-msg text-success text-center"></div>
                             </div>
                         </form>
                     </div>
@@ -800,28 +800,26 @@
     function sendComment() {
         let url = "{{route('send_comment')}}";
 
-        console.log($('input[name = comment_rate]').val());
+        $.ajax({
+            url: url,
+            type: "POST",
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+            },
+            data: {
+                comment_name: $('#comment_name').val(),
+                comment_comment: $('#comment_comment').val(),
+                comment_rate: $('#comment_rate').val(),
+                dataType: "json",
+            },
+            success: function (data) {
+                $('#comment_message').html(data.message);
 
-        // $.ajax({
-        //     url: url,
-        //     type: "POST",
-        //     headers: {
-        //         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-        //     },
-        //     data: {
-        //         comment_name: $('#comment_name').val(),
-        //         comment_comment: $('#comment_comment').val(),
-        //         comment_rate: $('#comment_rate').val(),
-        //         dataType: "json",
-        //     },
-        //     success: function (data) {
-        //         $('#comment_message').html(data.message);
-        //
-        //         setTimeout(function () {
-        //             $('#comment_message').html('');
-        //         }, 4000);
-        //     }
-        // });
+                setTimeout(function () {
+                    $('#comment_message').html('');
+                }, 4000);
+            }
+        });
 
     }
 </script>

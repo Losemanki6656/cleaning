@@ -62,15 +62,14 @@ class CommentCrudController extends CrudController
 
     public function sendComment(\Illuminate\Http\Request $request)
     {
-
         Comment::create([
             'name' => $request->comment_name,
             'comment' => $request->comment_comment,
-            'rate' => $request->rate
+            'rate' => $request->rate ?? 5
         ]);
 
         return response()->json([
-            'message' => 'Ваша заявка принята!'
+            'message' => 'Успешно отправлено!'
         ]);
     }
 }
