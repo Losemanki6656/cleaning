@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\ContentAbout;
 use App\Models\ContentApplication;
 use App\Models\ContentBanner;
@@ -26,6 +27,8 @@ class HomeController extends Controller
 
         $social_links = SocialLink::all();
 
+        $comments = Comment::where('status', true)->take(5)->get();
+
         return view('welcome',[
            'banners' => $banners,
             'about' => $about,
@@ -33,7 +36,8 @@ class HomeController extends Controller
             'project_photos' => $project_photos,
             'application' => $application,
             'services' => $services,
-            'social_links' => $social_links
+            'social_links' => $social_links,
+            'comments' => $comments
         ]);
     }
 }

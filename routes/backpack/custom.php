@@ -2,11 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-// --------------------------
-// Custom Backpack Routes
-// --------------------------
-// This route file is loaded automatically by Backpack\Base.
-// Routes you generate using Backpack\Generators will be placed here.
 
 Route::group([
     'prefix'     => config('backpack.base.route_prefix', 'admin'),
@@ -15,7 +10,8 @@ Route::group([
         (array) config('backpack.base.middleware_key', 'admin')
     ),
     'namespace'  => 'App\Http\Controllers\Admin',
-], function () { // custom admin routes
+], function () {
+
     Route::crud('content-banner', 'ContentBannerCrudController');
     Route::crud('content-about', 'ContentAboutCrudController');
     Route::crud('content-success-projects', 'ContentSuccessProjectsCrudController');
@@ -26,5 +22,8 @@ Route::group([
     Route::crud('application', 'ApplicationCrudController');
 
     Route::post('send-message', 'ApplicationCrudController@sendMessage')->name('send_message');
+    Route::post('send-comment', 'CommentCrudController@sendComment')->name('send_comment');
 
-}); // this should be the absolute last line of this file
+    Route::crud('comment', 'CommentCrudController');
+
+});
