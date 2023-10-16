@@ -21,9 +21,10 @@ Route::group([
     Route::crud('social-link', 'SocialLinkCrudController');
     Route::crud('application', 'ApplicationCrudController');
 
-    Route::post('send-message', 'ApplicationCrudController@sendMessage')->name('send_message');
-    Route::post('send-comment', 'CommentCrudController@sendComment')->name('send_comment');
 
     Route::crud('comment', 'CommentCrudController');
 
 });
+
+    Route::post('send-message', 'App\Http\Controllers\Admin\ApplicationCrudController@sendMessage')->name('send_message');
+    Route::post('send-comment', 'App\Http\Controllers\Admin\CommentCrudController@sendComment')->name('send_comment');
