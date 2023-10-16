@@ -318,7 +318,7 @@
                         <div class="testimonial-carousel owl-carousel owl-theme">
 
                             @foreach($comments as $comment)
-                                <div class="item">
+                                <div class="item" style="display: block !important;">
                                     <div class="content">
                                         <img src="assets/img/shape/quote.png" alt="Quote">
                                         <p>
