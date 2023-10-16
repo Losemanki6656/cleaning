@@ -31,6 +31,7 @@ class ApplicationCrudController extends CrudController
         CRUD::column('name');
         CRUD::column('phone');
         CRUD::column('address');
+        CRUD::column('app_date');
         CRUD::column('status');
         CRUD::column('description');
 
@@ -67,12 +68,14 @@ class ApplicationCrudController extends CrudController
             'name' => 'required',
             'phone' => 'required',
             'address' => 'required',
+            'date' => 'required',
         ]);
 
         Application::create([
             'name' => $request->name,
             'phone' => $request->phone,
-            'address' => $request->address
+            'address' => $request->address,
+            'app_date' => $request->date
         ]);
 
         return response()->json([
