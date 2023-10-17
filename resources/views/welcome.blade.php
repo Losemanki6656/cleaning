@@ -156,7 +156,7 @@
                     <div class="bottom-info">
                         <div class="button">
                             <a data-animation="animated zoomInUp" class="btn btn-theme primary effect btn-md"
-                               href="#">{{__('Свяжите с нами')}}</a>
+                               href="#appoinment">{{__('Свяжите с нами')}}</a>
                         </div>
                         <div class="contact">
                             <div class="content">

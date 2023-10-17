@@ -40,7 +40,7 @@ class ContentAbout extends Model
 
     public function setPhotoAttribute($value)
     {
-        if ($value) {
+        if (strlen($value) > 150) {
             $folderPath = "images/about-images/";
             $image_parts = explode(";base64,", $value);
             $image_type_aux = explode("image/", $image_parts[0]);
@@ -59,7 +59,7 @@ class ContentAbout extends Model
     public function setLogoAttribute($value)
     {
 
-        if ($value) {
+        if (strlen($value) > 150) {
             $folderPath = "images/about-images/";
             $image_parts = explode(";base64,", $value);
             $image_type_aux = explode("image/", $image_parts[0]);
@@ -76,7 +76,7 @@ class ContentAbout extends Model
 
     public function setCirclePhotoAttribute($value)
     {
-        if ($value) {
+        if (strlen($value) > 150) {
             $folderPath = "images/about-images/";
             $image_parts = explode(";base64,", $value);
             $image_type_aux = explode("image/", $image_parts[0]);

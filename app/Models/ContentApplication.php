@@ -33,7 +33,7 @@ class ContentApplication extends Model
 
     public function setPhotoAttribute($value)
     {
-        if ($value) {
+        if (strlen($value) > 150) {
             $folderPath = "images/application-images/";
             $image_parts = explode(";base64,", $value);
             $image_type_aux = explode("image/", $image_parts[0]);
