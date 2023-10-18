@@ -74,6 +74,24 @@ class ContentAbout extends Model
         }
     }
 
+    public function setLogoDarkAttribute($value)
+    {
+
+        if (strlen($value) > 150) {
+            $folderPath = "images/about-images/";
+            $image_parts = explode(";base64,", $value);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $filename = Str::random(5) . time() . '.'.$image_type;
+            $file = $folderPath . $filename;
+
+            Storage::disk('public')->put($file, $image_base64);
+
+            $this->attributes['logo_dark'] = 'storage/' . $file;
+        }
+    }
+
     public function setCirclePhotoAttribute($value)
     {
         if (strlen($value) > 150) {

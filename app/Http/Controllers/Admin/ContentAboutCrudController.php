@@ -126,7 +126,13 @@ class ContentAboutCrudController extends CrudController
         $this->crud->addField([
             'name' => 'logo',
             'type' => 'image',
-            'label' => "Logo"
+            'label' => "Logo Light"
+        ]);
+
+        $this->crud->addField([
+            'name' => 'logo_dark',
+            'type' => 'image',
+            'label' => "Logo Dark"
         ]);
 
         $this->crud->addField([

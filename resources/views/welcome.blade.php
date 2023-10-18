@@ -42,7 +42,7 @@
         <div class="row align-center">
             <div class="col-lg-3 logo">
                 <a href="/">
-                    <img src="{{$about->logo}}" class="logo" alt="Logo">
+                    <img src="{{$about->logo_dark}}" class="logo" alt="Logo">
                 </a>
             </div>
             <div class="col-lg-9 info item-flex space-between">
@@ -170,8 +170,50 @@
     </div>
 </div>
 
+<div class="services-style-two-area default-padding pt-0" id="service">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="site-heading text-center">
+                    <h2>Услуги и Сервисы</h2>
+                    <div class="devider"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-full">
+        <div class="services-tyle-two-box text-center">
+            <div class="services-4-col-carousel owl-carousel owl-theme">
+                <!-- Single Item -->
+                @foreach($services as $serivice)
+                    <div class="single-item">
+                        <div class="thumb" style="background-image: url({{asset($serivice->photo)}});"></div>
+                        <h4><a href="services-details.html">{{$serivice->title}}</a></h4>
+                        <i class="flaticon-house"></i>
+                        <p> {{$serivice->description}}
+                        </p>
+                    </div>
+                @endforeach
+                <!-- End Single Item -->
 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="site-heading text-center">
+                <h2>Оставить заявку</h2>
+                <div class="devider"></div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="appoinment-area bg-theme" id="appoinment">
+
     <div class="container">
         <div class="row align-center">
             <div class="col-lg-6">
@@ -763,7 +805,7 @@
                         <ul>
                             @foreach($services as $service)
                                 <li>
-                                    <a href="/"><i class="fas fa-angle-right"></i> {{$service->title}}</a>
+                                    <a href="#service"><i class="fas fa-angle-right"></i> {{$service->title}}</a>
                                 </li>
                             @endforeach
 
