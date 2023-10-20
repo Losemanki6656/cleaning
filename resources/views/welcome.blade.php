@@ -903,7 +903,7 @@
 <script src="{{asset('assets/js/main.js')}}"></script>
 <script>
     $(document).ready(function () {
-        $('#phone').inputmask('(99)-999-99-99');
+        $('#phone').inputmask('+9 (999)-999-9999');
     });
 
     function thisFileUpload() {
