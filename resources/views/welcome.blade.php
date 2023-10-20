@@ -255,7 +255,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <input class="form-control" id="date" name="date_mes"
+                                    <input class="form-control" id="date_mes" name="date_mes"
                                            placeholder="{{__('')}}" type="date">
                                     <span class="alert-error"></span>
                                 </div>
@@ -265,7 +265,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group text-center">
-                                    <textarea class="form-control" name="address_mes"
+                                    <textarea class="form-control" name="address_mes" id="address_mes"
                                               placeholder="{{__('Address')}}" required></textarea>
                                     <span id="error_address"
                                           class="font-weight-bold alert-error text-danger text-center"></span>
@@ -922,8 +922,8 @@
             data: {
                 name: $('#name').val(),
                 phone: $('#phone').val(),
-                address: $('#address').val(),
-                data: $('#data').val(),
+                address: $('#address_mes').val(),
+                data: $('#date_mes').val(),
                 dataType: "json",
             },
             success: function (data) {
