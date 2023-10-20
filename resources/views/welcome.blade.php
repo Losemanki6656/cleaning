@@ -236,7 +236,7 @@
                                 <div class="form-group text-center">
                                     <input class="form-control" id="name" name="name" placeholder="{{__('Name')}}"
                                            type="text" required>
-                                    <span id="error_name"
+                                    <span id="error_name_mes"
                                           class="font-weight-bold alert-error text-danger text-center"></span>
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                                 <div class="form-group text-center">
                                     <input class="form-control" id="phone" name="phone"
                                            placeholder="{{__('Phone number')}}" type="text" required>
-                                    <span id="error_phone"
+                                    <span id="error_phone_mes"
                                           class="font-weight-bold alert-error text-danger text-center"></span>
                                 </div>
                             </div>
@@ -267,7 +267,7 @@
                                 <div class="form-group text-center">
                                     <textarea class="form-control" name="address_mes" id="address_mes"
                                               placeholder="{{__('Address')}}" required></textarea>
-                                    <span id="error_address"
+                                    <span id="error_address_mes"
                                           class="font-weight-bold alert-error text-danger text-center"></span>
                                 </div>
                             </div>
@@ -934,9 +934,9 @@
                 }, 4000);
             },
             error: function (error) {
-                $('#error_name').html(error.responseJSON.errors.name[0] ?? '');
-                $('#error_phone').html(error.responseJSON.errors.phone[0] ?? '');
-                $('#error_address').html(error.responseJSON.errors.address[0] ?? '');
+                $('#error_name_mes').html(error.responseJSON.errors.name[0] ?? '');
+                $('#error_phone_mes').html(error.responseJSON.errors.phone[0] ?? '');
+                $('#error_address_mes').html(error.responseJSON.errors.address[0] ?? '');
             }
         });
 
