@@ -10,6 +10,7 @@ use App\Models\ContentProjectPhotos;
 use App\Models\ContentService;
 use App\Models\ContentSuccessProjects;
 use App\Models\SocialLink;
+use App\Models\Title;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -29,6 +30,8 @@ class HomeController extends Controller
 
         $comments = Comment::where('status', true)->take(5)->get();
 
+        $title = Title::first();
+
         return view('welcome',[
            'banners' => $banners,
             'about' => $about,
@@ -37,7 +40,8 @@ class HomeController extends Controller
             'application' => $application,
             'services' => $services,
             'social_links' => $social_links,
-            'comments' => $comments
+            'comments' => $comments,
+            'title' => $title
         ]);
     }
 }

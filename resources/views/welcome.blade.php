@@ -48,7 +48,8 @@
             <div class="col-lg-9 info item-flex space-between">
                 <ul>
                     <li>
-                        <i class="fas fa-phone"></i> {{__('Часы работы')}}: {{$about->from_time}} – {{$about->to_time}}
+                        <img src="{{$about->logo_dark}}" width="60" height="50" class="d-lg-none" alt="Logo">
+                        <i class="mx-2 fas fa-phone"></i> <span style="font-size: 14px">{{$about->phone}}</span>
                     </li>
                 </ul>
                 <div class="social">
@@ -100,7 +101,7 @@
                                             <h2 data-animation="animated slideInLeft">{{$banner->name}}</h2>
                                             <div class="bottom" data-animation="animated slideInUp">
                                                 <a class="btn btn-theme primary effect btn-md"
-                                                   href="#appoinment">{{__('Забронировать')}}</a>
+                                                   href="#appoinment">{{$title->banner_button ?? '' }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -156,7 +157,7 @@
                     <div class="bottom-info">
                         <div class="button">
                             <a data-animation="animated zoomInUp" class="btn btn-theme primary effect btn-md"
-                               href="#appoinment">{{__('Свяжите с нами')}}</a>
+                               href="#appoinment">{{$title->info_button ?? ''}}</a>
                         </div>
                         <div class="contact">
                             <div class="content">
@@ -175,7 +176,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
                 <div class="site-heading text-center">
-                    <h2>Услуги и Сервисы</h2>
+                    <h2>{{$title->title_service ?? ''}}</h2>
                     <div class="devider"></div>
                 </div>
             </div>
@@ -206,7 +207,7 @@
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <div class="site-heading text-center">
-                <h2>Оставить заявку</h2>
+                <h2>{{$title->title_application ?? ''}}</h2>
                 <div class="devider"></div>
             </div>
         </div>
@@ -244,7 +245,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group text-center">
                                     <input class="form-control" id="phone" name="phone"
-                                           placeholder="{{__('Телефон номер')}}" type="text" required>
+                                           placeholder="{{__('Phone number')}}" type="text" required>
                                     <span id="error_phone"
                                           class="font-weight-bold alert-error text-danger text-center"></span>
                                 </div>
@@ -265,7 +266,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group text-center">
                                     <textarea class="form-control" name="address"
-                                              placeholder="{{__('Адрес')}}" required></textarea>
+                                              placeholder="{{__('Address')}}" required></textarea>
                                     <span id="error_address"
                                           class="font-weight-bold alert-error text-danger text-center"></span>
                                 </div>
@@ -279,7 +280,7 @@
                                            multiple>
                                     <button class="btn btn-theme primary effect" type="button"
                                             onclick="thisFileUpload();">
-                                        <span><i class="fas fa-download"></i> {{__('Прикрепите файл')}} </span>
+                                        <span><i class="fas fa-download"></i> {{__('Attach file')}} </span>
                                     </button>
 
                                 </div>
@@ -290,7 +291,7 @@
                             <div class="col-lg-12">
                                 <button class="btn-animation dark border" form="form" type="button"
                                         onclick="sendMessage();">
-                                    <span> {{__('Отправить заявку')}} <i class="fas fa-angle-right"></i></span>
+                                    <span> {{$title->button_application ?? ''}} <i class="fas fa-angle-right"></i></span>
                                 </button>
                             </div>
                         </div>
@@ -347,7 +348,7 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
                     <div class="site-heading text-center">
-                        <h2>Отзывы</h2>
+                        <h2>{{$title->comment_title ?? ''}}</h2>
                         <div class="devider"></div>
                     </div>
                 </div>
@@ -548,17 +549,16 @@
                 </div>
                 <div class="col-lg-8 contact-form-box">
                     <div class="form-box">
-                        <h2>Ваше мнение</h2>
+                        <h2>{{$title->post_title ?? ''}}</h2>
                         <p>
-                            Заранее благодарим вас за отзыв и напоминаем, что вы являетесь для нас приоритетным
-                            клиентом.
+                            {{$title->post_description ?? ''}}
                         </p>
                         <form class="contact-form">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group comments">
                                         <input class="form-control" name="comment_name" id="comment_name"
-                                               placeholder="Имя">
+                                               placeholder="Name">
                                     </div>
                                 </div>
                             </div>
@@ -566,7 +566,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group comments">
                                         <textarea class="form-control" name="comment_comment" id="comment_comment"
-                                                  placeholder="Отзыв ..."></textarea>
+                                                  placeholder="Comment ..."></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -764,7 +764,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <button type="button" class="w-100" onclick="sendComment()">
-                                        Отправить <i class="fa fa-paper-plane"></i>
+                                        Send <i class="fa fa-paper-plane"></i>
                                     </button>
                                 </div>
                             </div>
@@ -801,7 +801,7 @@
 
                 <div class="col-lg-4 col-md-6 item">
                     <div class="f-item link">
-                        <h4 class="widget-title">{{__('Услуги')}}</h4>
+                        <h4 class="widget-title">{{$title->title_service ?? ''}}</h4>
                         <ul>
                             @foreach($services as $service)
                                 <li>
@@ -814,7 +814,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 item">
                     <div class="f-item contact-widget">
-                        <h4 class="widget-title">{{__('О информации')}}:</h4>
+                        <h4 class="widget-title">{{__('Info')}}:</h4>
                         <div class="address">
                             <ul>
                                 <li>
@@ -825,7 +825,7 @@
                                         <i class="fas fa-clock"></i>
                                     </div>
                                     <div class="content">
-                                        <strong>{{__('Часы работы')}}:</strong>
+                                        <strong>{{__('Opening hours')}}:</strong>
                                         {{$about->from_time}} – {{$about->to_time}}
                                     </div>
                                 </li>
@@ -851,7 +851,7 @@
             <div class="footer-bottom-box">
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>&copy; Все права защищены.</p>
+                        <p>&copy; All rights reserved.</p>
                     </div>
                     {{--                    <div class="col-lg-6 text-right link">--}}
                     {{--                        <ul>--}}

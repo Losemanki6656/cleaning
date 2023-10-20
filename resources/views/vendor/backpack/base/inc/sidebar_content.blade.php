@@ -10,3 +10,4 @@
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('social-link') }}'><i class='nav-icon la la-question'></i> Social links</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('application') }}'><i class='nav-icon la la-question'></i> Applications</a></li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('comment') }}'><i class='nav-icon la la-question'></i> Comments</a></li>
+<li class='nav-item'><a class='nav-link' href='{{ backpack_url('title') }}'><i class='nav-icon la la-question'></i> Titles</a></li>
