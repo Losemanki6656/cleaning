@@ -39,7 +39,6 @@ class TitleCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('id');
         CRUD::column('banner_button');
         CRUD::column('info_button');
         CRUD::column('title_service');
@@ -66,7 +65,6 @@ class TitleCrudController extends CrudController
     {
         CRUD::setValidation(TitleRequest::class);
 
-        CRUD::field('id');
         CRUD::field('banner_button');
         CRUD::field('info_button');
         CRUD::field('title_service');
