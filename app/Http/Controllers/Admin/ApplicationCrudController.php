@@ -67,15 +67,15 @@ class ApplicationCrudController extends CrudController
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'address' => 'required',
-            'date' => 'required',
+            'address_mes' => 'required',
+            'date_mes' => 'required',
         ]);
 
         Application::create([
             'name' => $request->name,
             'phone' => $request->phone,
-            'address' => $request->address,
-            'app_date' => $request->date
+            'address' => $request->address_mes,
+            'app_date' => $request->date_mes
         ]);
 
         return response()->json([
