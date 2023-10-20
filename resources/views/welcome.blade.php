@@ -190,7 +190,7 @@
                     <div class="single-item">
                         <div class="thumb" style="background-image: url({{asset($serivice->photo)}});"></div>
                         <h4><a href="services-details.html">{{$serivice->title}}</a></h4>
-                        <i class="flaticon-house"></i>
+{{--                        <i class="flaticon-house"></i>--}}
                         <p> {{$serivice->description}}
                         </p>
                     </div>
@@ -234,7 +234,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group text-center">
-                                    <input class="form-control" id="name" name="name" placeholder="{{__('Имя')}}"
+                                    <input class="form-control" id="name" name="name" placeholder="{{__('Name')}}"
                                            type="text" required>
                                     <span id="error_name"
                                           class="font-weight-bold alert-error text-danger text-center"></span>
