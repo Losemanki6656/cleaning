@@ -68,7 +68,7 @@ class ApplicationCrudController extends CrudController
             'name' => 'required',
             'phone' => 'required',
             'address' => 'required',
-            'date' => 'required',
+            'data' => 'required',
         ]);
 
         Application::create([
