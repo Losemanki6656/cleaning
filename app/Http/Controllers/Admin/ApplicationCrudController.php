@@ -79,7 +79,7 @@ class ApplicationCrudController extends CrudController
         ]);
 
         return response()->json([
-            'message' => 'Ваша заявка принята!'
+            'message' => 'Your application has been accepted!'
         ]);
     }
 }

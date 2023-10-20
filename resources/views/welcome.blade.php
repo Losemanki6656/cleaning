@@ -48,7 +48,7 @@
             <div class="col-lg-9 info item-flex space-between">
                 <ul>
                     <li>
-                        <img src="{{$about->logo_dark}}" width="60" height="50" class="d-lg-none" alt="Logo">
+                        <img src="{{$about->logo}}" width="60" height="50" class="d-lg-none" alt="Logo">
                         <i class="mx-2 fas fa-phone"></i> <span style="font-size: 14px">{{$about->phone}}</span>
                     </li>
                 </ul>
