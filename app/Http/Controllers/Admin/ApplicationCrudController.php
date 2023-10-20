@@ -75,7 +75,7 @@ class ApplicationCrudController extends CrudController
             'name' => $request->name,
             'phone' => $request->phone,
             'address' => $request->address,
-            'app_date' => $request->date
+            'app_date' => $request->data
         ]);
 
         return response()->json([
