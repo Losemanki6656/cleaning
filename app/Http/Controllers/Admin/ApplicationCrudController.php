@@ -32,6 +32,14 @@ class ApplicationCrudController extends CrudController
 
     protected function setupListOperation()
     {
+//        if (backpack_auth()->check()) {
+//            $this->crud->query = $this->crud->query
+//                ->whereNotNull('application_id')
+//                ->when(request('application_id'), function ($q, $application_id) {
+//                    $q->where('application_id', $application_id);
+//                });
+//        }
+
         $this->crud->addColumns([
             [
                 'name' => 'name',
