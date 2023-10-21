@@ -342,7 +342,10 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <button class="btn-animation dark border" form="form" type="button"
-                                        onclick="sendMessage();">
+                                        onclick="sendMessage();" id="appl_btn">
+                                    <span class="spinner-border text-light mr-2 d-none" role="status" id="spinner">
+                                        <span class="visually-hidden"></span>
+                                    </span>
                                     <span> {{$title->button_application ?? ''}} <i class="fas fa-angle-right"></i></span>
                                 </button>
                             </div>
@@ -964,6 +967,8 @@
 
     function sendMessage() {
         let url = "{{route('send_message')}}";
+        $('#spinner').removeClass('d-none');
+        $('#appl_btn').prop('disabled', true);
 
         let formData = new FormData();
         formData.append('name', $('#name').val())
@@ -991,11 +996,19 @@
             success: function (data) {
                 $('#message').html(data.message);
 
+                $('#spinner').addClass('d-none');
+                $('#appl_btn').prop('disabled', false);
+
                 setTimeout(function () {
                     $('#message').html('');
                 }, 4000);
+
+
             },
             error: function (error) {
+                $('#spinner').addClass('d-none');
+                $('#appl_btn').prop('disabled', false);
+
                 $('#error_name_mes').html(error.responseJSON.errors.name[0] ?? '');
                 $('#error_phone_mes').html(error.responseJSON.errors.phone[0] ?? '');
                 $('#error_address_mes').html(error.responseJSON.errors.address[0] ?? '');

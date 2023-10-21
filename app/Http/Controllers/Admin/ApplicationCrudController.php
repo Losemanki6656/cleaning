@@ -32,12 +32,38 @@ class ApplicationCrudController extends CrudController
 
     protected function setupListOperation()
     {
-        CRUD::column('name');
-        CRUD::column('phone');
-        CRUD::column('address');
-        CRUD::column('app_date');
-        CRUD::column('status');
-        CRUD::column('description');
+        $this->crud->addColumns([
+            [
+                'name' => 'name',
+                'label' => __('Name')
+            ],
+            [
+                'name' => 'phone',
+                'label' => __('Phone'),
+            ],
+            [
+                'name' => 'files',
+                'label' => __('Files'),
+                'type' => 'view',
+                'view' => 'backpack::crud.files',
+            ],
+            [
+                'name' => 'address',
+                'label' => __('Address'),
+            ],
+            [
+                'name' => 'app_date',
+                'label' => __('App Date'),
+            ],
+            [
+                'name' => 'status',
+                'label' => __('Status'),
+            ],
+            [
+                'name' => 'description',
+                'label' => __('Description'),
+            ],
+        ]);
 
 
     }

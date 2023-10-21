@@ -34,7 +34,10 @@ class Application extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-
+    public function files(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ApplicationFile::class);
+    }
     /*
     |--------------------------------------------------------------------------
     | SCOPES
