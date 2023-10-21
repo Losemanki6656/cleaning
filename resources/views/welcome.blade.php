@@ -34,6 +34,48 @@
 
 <body>
 
+<style>
+    /* Create the look of a generic thumbnail */
+    .thumbnail {
+        position:relative;
+        display:inline-block;
+        width:6em;
+        height:6em;
+        border-radius:0.6em;
+        border:0.25em solid white;
+        vertical-align:middle;
+        box-shadow:0 0.15em 0.35em 0.1em rgba(0,0,0,0.2);
+        margin:0.5em;
+
+        background-position:center;
+        background-size:cover;
+    }
+    /* This will hide the file input */
+    .imagepicker input {
+        display:none;
+    }
+    .imagepicker {
+        cursor:pointer;
+        color:black;
+        background-color: rgba(237, 245, 255, 1);
+    }
+    /* This will add the floating plus symbol to the imagepicker */
+    .imagepicker:before {
+        content:'+';
+        position:absolute;
+        font-size:3em;
+        vertical-align:middle;
+        top:60%;
+        left:50%;
+        transform:translate(-50%,-50%);
+    }
+    /* This will hide the plus symbol behind the background of the imagepicker if the class "picked" is added to the element */
+    .imagepicker.picked:before {
+        z-index:-1;
+    }
+</style>
+
+
 <div class="se-pre-con"></div>
 
 
@@ -275,17 +317,27 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="form-group">
-                                    <input type="file" name="file_upload" style="display: none" id="file_upload"
-                                           multiple>
-                                    <button class="btn btn-theme primary effect" type="button"
-                                            onclick="thisFileUpload();">
-                                        <span><i class="fas fa-download"></i> {{__('Attach file')}} </span>
-                                    </button>
-
+                                <div class="form-group text-center">
+                                    <label class="imagepicker imagepicker-add thumbnail" id="img_upload"> Add file
+                                        <input type='file' id="imagepicker2" multiple name="upload_files">
+                                    </label>
                                 </div>
                             </div>
                         </div>
+
+{{--                        <div class="row">--}}
+{{--                            <div class="col-lg-12">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <input type="file" name="file_upload" style="display: none" id="file_upload"--}}
+{{--                                           multiple>--}}
+{{--                                    <button class="btn btn-theme primary effect" type="button"--}}
+{{--                                            onclick="thisFileUpload();">--}}
+{{--                                        <span><i class="fas fa-download"></i> {{__('Attach file')}} </span>--}}
+{{--                                    </button>--}}
+
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                         <div class="row">
                             <div class="col-lg-12">
@@ -913,19 +965,29 @@
     function sendMessage() {
         let url = "{{route('send_message')}}";
 
+        let formData = new FormData();
+        formData.append('name', $('#name').val())
+        formData.append('phone', $('#phone').val())
+        formData.append('address', $('#address_mes').val())
+        formData.append('data', $('#date_mes').val())
+
+        let files = document.getElementById('imagepicker2').files;
+
+        for (var i = 0; i < files.length; i++)
+        {
+            formData.append('photos[]', files[i]);
+        }
+
         $.ajax({
             url: url,
             type: "POST",
+            enctype: "multipart/form-data",
+            processData: false,
+            contentType: false,
             headers: {
-                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
             },
-            data: {
-                name: $('#name').val(),
-                phone: $('#phone').val(),
-                address: $('#address_mes').val(),
-                data: $('#date_mes').val(),
-                dataType: "json",
-            },
+            data: formData,
             success: function (data) {
                 $('#message').html(data.message);
 
@@ -967,6 +1029,42 @@
         });
 
     }
+
+    function readFiles(files,callback,index=0) {
+        if (files && files[0]) {
+            let file = files[index++],
+                reader = new FileReader();
+            reader.onload = function(e){
+                callback(e);
+                if(index<files.length) readFiles(files,callback,index);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+    $("body")
+        .on("change",".imagepicker-replace input",function() {
+            // store the current "this" into a variable
+            var imagepicker = this;
+            readFiles(this.files,function(e) {
+                // "this" will be different in the callback function
+                $(imagepicker).parent()
+                    .addClass("picked")
+                    .css({"background-image":"url("+e.target.result+")"});
+            });
+        })
+
+    $("body")
+        .on("change",".imagepicker-add input",function() {
+            var imagepicker = this;
+            readFiles(this.files,function(e) {
+                $(imagepicker).parent().before(
+                    "<div class='thumbnail' style='background-image:url("+e.target.result+")'></div>"
+                )
+
+                $('#img_upload').addClass('d-none');
+            });
+        });
 </script>
 
 </body>
