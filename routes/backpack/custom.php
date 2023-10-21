@@ -28,4 +28,5 @@ Route::group([
     Route::crud('application-file', 'ApplicationFileCrudController');
 });
     Route::post('send-message', 'App\Http\Controllers\Admin\ApplicationCrudController@sendMessage')->name('send_message');
+    Route::post('send-file', 'App\Http\Controllers\Admin\ApplicationCrudController@sendFile')->name('sendFile');
     Route::post('send-comment', 'App\Http\Controllers\Admin\CommentCrudController@sendComment')->name('send_comment');

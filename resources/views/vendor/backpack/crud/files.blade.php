@@ -1,3 +1,5 @@
-<a href="/admin/application-file?application_id={{$entry->id}}" class="btn-primary btn btn-sm">
-    {{$entry->files->count()}}
-</a>
+@if($entry->files->count())
+    <a href="/admin/application-file?application_id={{$entry->id}}" class="btn-primary btn btn-sm">
+        {{$entry->files->count()}}
+    </a>
+@endif

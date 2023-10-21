@@ -94,6 +94,7 @@ class ApplicationCrudController extends CrudController
 
     public function sendMessage(\Illuminate\Http\Request $request)
     {
+
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
@@ -108,20 +109,42 @@ class ApplicationCrudController extends CrudController
             'app_date' => $request->data
         ]);
 
-        foreach ($request->photos as $photo) {
-            $folderPath = "images/application-files/";
+        foreach (json_decode($request->photos) as $photo) {
+//            $folderPath = "images/application-files/";
+//
+//            $fileName = time() . $photo->getClientOriginalName();
+//            Storage::disk('public')->put($folderPath . $fileName, File::get($photo));
 
-            $fileName = time() . $photo->getClientOriginalName();
-            Storage::disk('public')->put($folderPath . $fileName, File::get($photo));
+            $file = ApplicationFile::query()
+                ->where('file','like', '%'. $photo . '%')
+                ->first();
+            $file->application_id = $application->id;
+            $file->save();
 
-            ApplicationFile::create([
-                'application_id' => $application->id,
-                'file' => 'storage/' . $folderPath . $fileName
-            ]);
+//            ApplicationFile::create([
+//                'application_id' => $application->id,
+//                'file' => 'storage/' . $folderPath . $fileName
+//            ]);
         }
 
         return response()->json([
             'message' => 'Your application has been accepted!'
+        ]);
+    }
+
+    public function sendFile(\Illuminate\Http\Request $request)
+    {
+        $folderPath = "images/application-files/";
+
+        $fileName = time() . $request->photo->getClientOriginalName();
+        Storage::disk('public')->put($folderPath . $fileName, File::get($request->photo));
+
+        ApplicationFile::create([
+            'file' => 'storage/' . $folderPath . $fileName
+        ]);
+
+        return response()->json([
+            'message' => 'storage/' . $folderPath . $fileName
         ]);
     }
 }

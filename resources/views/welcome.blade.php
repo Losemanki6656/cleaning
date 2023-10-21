@@ -34,47 +34,6 @@
 
 <body>
 
-<style>
-    /* Create the look of a generic thumbnail */
-    .thumbnail {
-        position:relative;
-        display:inline-block;
-        width:6em;
-        height:6em;
-        border-radius:0.6em;
-        border:0.25em solid white;
-        vertical-align:middle;
-        box-shadow:0 0.15em 0.35em 0.1em rgba(0,0,0,0.2);
-        margin:0.5em;
-
-        background-position:center;
-        background-size:cover;
-    }
-    /* This will hide the file input */
-    .imagepicker input {
-        display:none;
-    }
-    .imagepicker {
-        cursor:pointer;
-        color:black;
-        background-color: rgba(237, 245, 255, 1);
-    }
-    /* This will add the floating plus symbol to the imagepicker */
-    .imagepicker:before {
-        content:'+';
-        position:absolute;
-        font-size:3em;
-        vertical-align:middle;
-        top:60%;
-        left:50%;
-        transform:translate(-50%,-50%);
-    }
-    /* This will hide the plus symbol behind the background of the imagepicker if the class "picked" is added to the element */
-    .imagepicker.picked:before {
-        z-index:-1;
-    }
-</style>
-
 
 <div class="se-pre-con"></div>
 
@@ -109,11 +68,8 @@
         </div>
     </div>
 </div>
-<!-- End Header Top -->
 
 
-<!-- Start Banner
-============================================= -->
 <div class="banner-area top-pad-extra text-regular right-shape content-less">
     <!-- Animated Bubble -->
     <div class="animated-bubble">
@@ -166,10 +122,8 @@
 
     </div>
 </div>
-<!-- End Banner -->
 
-<!-- Start About
-============================================= -->
+
 <div class="about-us-area overflow-hidden default-padding">
     <div class="container">
         <div class="about-items">
@@ -232,7 +186,7 @@
                     <div class="single-item">
                         <div class="thumb" style="background-image: url({{asset($serivice->photo)}});"></div>
                         <h4><a href="services-details.html">{{$serivice->title}}</a></h4>
-{{--                        <i class="flaticon-house"></i>--}}
+                        {{--                        <i class="flaticon-house"></i>--}}
                         <p> {{$serivice->description}}
                         </p>
                     </div>
@@ -243,6 +197,93 @@
         </div>
     </div>
 </div>
+
+<style>
+
+    .wrap {
+        width: 100%;
+        /*margin: auto;*/
+        position: relative;
+        /*top: 50%;*/
+        /*left: 50%;*/
+        /*margin-top: 100px;*/
+        /*transform: translate(-50%, -50%);*/
+        border-radius: 4px;
+        background-color: #2e4261;
+        /*box-shadow: 0 1px 2px 0 #c9ced1;*/
+        padding: 1.25rem;
+        /*margin-bottom: 1.25rem;*/
+    }
+
+    .file {
+        position: relative;
+        max-width: 22.5rem;
+        font-size: 1.0625rem;
+        font-weight: 600;
+    }
+
+    .file__input, .file__value {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        margin-bottom: 0.875rem;
+        color: rgba(255, 255, 255, 0.3);
+        padding: 0.9375rem 1.0625rem;
+    }
+
+    .file__input--file {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .file__input--label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0;
+        cursor: pointer;
+    }
+
+    .file__input--label:after {
+        content: attr(data-text-btn);
+        border-radius: 3px;
+        background-color: #536480;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.18);
+        padding: 0.9375rem 1.0625rem;
+        margin: -0.9375rem -1.0625rem;
+        color: white;
+        cursor: pointer;
+    }
+
+    .file__value {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .file__value:hover:after {
+        color: white;
+    }
+
+    .file__value:after {
+        content: "X";
+        /*background-color: #c9401a;*/
+        /*padding: 0.25rem;*/
+        cursor: pointer;
+        /*border-radius: 5px;*/
+    }
+
+    .file__value:after:hover {
+        color: white;
+    }
+
+    .file__remove {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 1px solid #000;
+    }
+</style>
 
 
 <div class="container">
@@ -315,29 +356,17 @@
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="form-group text-center">
-                                    <label class="imagepicker imagepicker-add thumbnail" id="img_upload"> Add file
-                                        <input type='file' id="imagepicker2" multiple name="upload_files">
-                                    </label>
+                        <div class="wrap mb-3">
+                            <h5 class="text-white">File upload</h5>
+                            <div class="file">
+                                <div class="file__input" id="file__input">
+                                    <input class="file__input--file" id="customFile" type="file" multiple="multiple"
+                                           name="files[]"/>
+                                    <label class="file__input--label" for="customFile" data-text-btn="Upload">Add
+                                        file:</label>
                                 </div>
                             </div>
                         </div>
-
-{{--                        <div class="row">--}}
-{{--                            <div class="col-lg-12">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <input type="file" name="file_upload" style="display: none" id="file_upload"--}}
-{{--                                           multiple>--}}
-{{--                                    <button class="btn btn-theme primary effect" type="button"--}}
-{{--                                            onclick="thisFileUpload();">--}}
-{{--                                        <span><i class="fas fa-download"></i> {{__('Attach file')}} </span>--}}
-{{--                                    </button>--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
 
                         <div class="row">
                             <div class="col-lg-12">
@@ -346,7 +375,8 @@
                                     <span class="spinner-border text-light mr-2 d-none" role="status" id="spinner">
                                         <span class="visually-hidden"></span>
                                     </span>
-                                    <span> {{$title->button_application ?? ''}} <i class="fas fa-angle-right"></i></span>
+                                    <span> {{$title->button_application ?? ''}} <i
+                                            class="fas fa-angle-right"></i></span>
                                 </button>
                             </div>
                         </div>
@@ -361,6 +391,17 @@
     </div>
 </div>
 
+<div class="modal fade" id="loading" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+               <span class="spinner-border text-dark mr-2" role="status">
+                                        <span class="visually-hidden"></span>
+                                    </span>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="projects-area default-padding">
     <div class="container">
@@ -937,6 +978,7 @@
 <!-- jQuery Frameworks
 ============================================= -->
 <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/jquery.appear.js')}}"></script>
@@ -959,7 +1001,45 @@
 <script>
     $(document).ready(function () {
         $('#phone').inputmask('+9 (999)-999-9999');
+
+        $('.file__input--file').on('change', function (event) {
+            const files = event.target.files;
+            for (var i = 0; i < files.length; i++) {
+
+                const file = files[i];
+                let formData = new FormData();
+                formData.append('photo', file)
+                $('#loading').modal('show');
+                $.ajax({
+                    url: "{{route('sendFile')}}",
+                    type: "POST",
+                    enctype: "multipart/form-data",
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: formData,
+                    success: function (data) {
+                        $("<div class='file__value'><div class='file__value--text'>" + file.name +
+                            "</div><div class='file__value--remove' data-id='" + file.name + "' ></div> " +
+                            "<input type='hidden' id='up_files[]' multiple name='up_files[]' value=" + data.message + "> " +
+                            "</div>").insertAfter('#file__input');
+                        $('#loading').modal('hide');
+                    },
+                    error: function (error) {
+                        $('#loading').modal('hide');
+                    }
+                });
+
+            }
+        });
+
+        $('body').on('click', '.file__value', function () {
+            $(this).remove();
+        });
     });
+
 
     function thisFileUpload() {
         document.getElementById("file_upload").click();
@@ -975,13 +1055,13 @@
         formData.append('phone', $('#phone').val())
         formData.append('address', $('#address_mes').val())
         formData.append('data', $('#date_mes').val())
+        const arr = [];
+        const values = $("input[name='up_files[]']")
+            .map(function () {
+                arr.push($(this).val());
+            }).get();
 
-        let files = document.getElementById('imagepicker2').files;
-
-        for (var i = 0; i < files.length; i++)
-        {
-            formData.append('photos[]', files[i]);
-        }
+        formData.append('photos', JSON.stringify(arr))
 
         $.ajax({
             url: url,
@@ -1043,41 +1123,6 @@
 
     }
 
-    function readFiles(files,callback,index=0) {
-        if (files && files[0]) {
-            let file = files[index++],
-                reader = new FileReader();
-            reader.onload = function(e){
-                callback(e);
-                if(index<files.length) readFiles(files,callback,index);
-            }
-            reader.readAsDataURL(file);
-        }
-    }
-
-    $("body")
-        .on("change",".imagepicker-replace input",function() {
-            // store the current "this" into a variable
-            var imagepicker = this;
-            readFiles(this.files,function(e) {
-                // "this" will be different in the callback function
-                $(imagepicker).parent()
-                    .addClass("picked")
-                    .css({"background-image":"url("+e.target.result+")"});
-            });
-        })
-
-    $("body")
-        .on("change",".imagepicker-add input",function() {
-            var imagepicker = this;
-            readFiles(this.files,function(e) {
-                $(imagepicker).parent().before(
-                    "<div class='thumbnail' style='background-image:url("+e.target.result+")'></div>"
-                )
-
-                $('#img_upload').addClass('d-none');
-            });
-        });
 </script>
 
 </body>
