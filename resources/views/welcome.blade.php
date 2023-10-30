@@ -167,7 +167,7 @@
     </div>
 </div>
 
-<div class="blog-area grid-style default-padding bottom-less bg-gray">
+<div class="blog-area grid-style default-padding bottom-less">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
