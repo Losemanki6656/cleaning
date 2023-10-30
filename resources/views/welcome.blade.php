@@ -167,7 +167,7 @@
     </div>
 </div>
 
-<div class="services-style-two-area default-padding pt-0" id="service">
+<div class="blog-area grid-style default-padding bottom-less bg-gray">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2">
@@ -178,25 +178,60 @@
             </div>
         </div>
     </div>
-    <div class="container-full">
-        <div class="services-tyle-two-box text-center">
-            <div class="services-4-col-carousel owl-carousel owl-theme">
-                <!-- Single Item -->
+    <div class="container">
+        <div class="blog-items">
+            <div class="row">
                 @foreach($services as $serivice)
-                    <div class="single-item">
-                        <div class="thumb" style="background-image: url({{asset($serivice->photo)}});"></div>
-                        <h4><a href="services-details.html">{{$serivice->title}}</a></h4>
-                        {{--                        <i class="flaticon-house"></i>--}}
-                        <p> {{$serivice->description}}
-                        </p>
+                    <div class="single-item col-lg-4 col-md-6">
+                        <div class="item">
+                            <div class="thumb">
+                                <img src="{{asset($serivice->photo)}}" alt="Thumb">
+                            </div>
+                            <div class="info">
+                                <div class="meta">
+                                <h4><a href="blog-single-with-sidebar.html">{{$serivice->title}}</a></h4>
+                                <p>
+                                    {{$serivice->description}}
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 @endforeach
-                <!-- End Single Item -->
 
             </div>
         </div>
     </div>
 </div>
+
+{{--<div class="services-style-two-area default-padding pt-0" id="service">--}}
+{{--    <div class="container">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-lg-8 offset-lg-2">--}}
+{{--                <div class="site-heading text-center">--}}
+{{--                    <h2>{{$title->title_service ?? ''}}</h2>--}}
+{{--                    <div class="devider"></div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <div class="container-full">--}}
+{{--        <div class="services-tyle-two-box text-center">--}}
+{{--            <div class="services-4-col-carousel owl-carousel owl-theme">--}}
+{{--                <!-- Single Item -->--}}
+{{--                @foreach($services as $serivice)--}}
+{{--                    <div class="single-item">--}}
+{{--                        <div class="thumb" style="background-image: url({{asset($serivice->photo)}});"></div>--}}
+{{--                        <h4><a href="services-details.html">{{$serivice->title}}</a></h4>--}}
+{{--                        <p> {{$serivice->description}}--}}
+{{--                        </p>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--                <!-- End Single Item -->--}}
+
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 <style>
 
