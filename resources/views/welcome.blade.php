@@ -427,7 +427,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="loading" data-backdrop="static" data-keyboard="false" tabindex="-1"
+<div class="modal fade" id="loading_modal" data-backdrop="static" data-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -1052,7 +1052,7 @@
                 const file = files[i];
                 let formData = new FormData();
                 formData.append('photo', file)
-                $('#loading').modal('show');
+                $('#loading_modal').modal('show');
                 $.ajax({
                     url: "{{route('sendFile')}}",
                     type: "POST",
@@ -1070,15 +1070,15 @@
                             "<input type='hidden' id='up_files[]' multiple name='up_files[]' value=" + data.message + "> " +
                             "</div>").insertAfter('#file__input');
 
-                        $('#loading').modal('hide');
+                        $('#loading_modal').modal('hide');
                     },
                     error: function (error) {
-                        $('#loading').modal('hide');
+                        $('#loading_modal').modal('hide');
                     }
                 });
 
             }
-            $('#loading').modal('hide');
+            $('#loading_modal').modal('hide');
         });
 
         $('body').on('click', '.file__value', function () {
