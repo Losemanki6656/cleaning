@@ -1064,10 +1064,12 @@
                     },
                     data: formData,
                     success: function (data) {
+
                         $("<div class='file__value'><div class='file__value--text'>" + file.name +
                             "</div><div class='file__value--remove' data-id='" + file.name + "' ></div> " +
                             "<input type='hidden' id='up_files[]' multiple name='up_files[]' value=" + data.message + "> " +
                             "</div>").insertAfter('#file__input');
+
                         $('#loading').modal('hide');
                     },
                     error: function (error) {
@@ -1076,6 +1078,7 @@
                 });
 
             }
+            $('#loading').modal('hide');
         });
 
         $('body').on('click', '.file__value', function () {
